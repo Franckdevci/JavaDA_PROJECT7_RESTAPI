@@ -1,3 +1,7 @@
 # Maven artifacts
 pom.xml
 /target/
+
+
+.gitignore
+
