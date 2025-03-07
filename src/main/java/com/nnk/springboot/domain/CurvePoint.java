@@ -1,100 +1,47 @@
 package com.nnk.springboot.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "CurvePoint")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @DynamicUpdate
 public class CurvePoint {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column(name = "id")
     private Integer id;
 
-    @NotNull(message = "Must not be null")
-    @Column
+    @NotNull(message = "Curve ID must not be null")
+    @Column(name = "curveId")
+    @Min(value = 1, message = "Curve ID must be positive and higher than 0")
     private Integer curveId;
 
     @Column
     private Timestamp asOfDate;
 
-    @Column
+    @NotNull(message = "Term must not be null")
+    @Column(name ="term")
+    @Min(value = 1, message = "Term must be positive and higher than 0")
     private Double term;
 
-    @Column
+    @NotNull(message = "value must not be null")
+    @Column(name ="value")
+    @Min(value = 1, message = "Term must be positive and higher than 0")
     private Double value;
 
     @Column
     private Timestamp creationDate;
 
-
-    // Getters & Setters
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getCurveId() {
-        return curveId;
-    }
-
-    public void setCurveId(Integer curveId) {
-        this.curveId = curveId;
-    }
-
-    public Timestamp getAsOfDate() {
-        return asOfDate;
-    }
-
-    public void setAsOfDate(Timestamp asOfDate) {
-        this.asOfDate = asOfDate;
-    }
-
-    public Double getTerm() {
-        return term;
-    }
-
-    public void setTerm(Double term) {
-        this.term = term;
-    }
-
-    public Double getValue() {
-        return value;
-    }
-
-    public void setValue(Double value) {
-        this.value = value;
-    }
-
-    public Timestamp getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Timestamp creationDate) {
-        this.creationDate = creationDate;
-    }
-
-
-    // Constructors
-
-    public CurvePoint() {
-    }
-
-    public CurvePoint(Integer id, Integer curveId, Timestamp asOfDate, Double term, Double value, Timestamp creationDate) {
-        this.id = id;
-        this.curveId = curveId;
-        this.asOfDate = asOfDate;
-        this.term = term;
-        this.value = value;
-        this.creationDate = creationDate;
-    }
 }

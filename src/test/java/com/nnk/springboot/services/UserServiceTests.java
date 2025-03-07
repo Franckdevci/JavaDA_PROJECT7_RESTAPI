@@ -26,7 +26,7 @@ public class UserServiceTests {
     @Test
     public void createUserTest() {
         User user = new User(1, "Username", "Password", "Full Name", "USER");
-        when(userRepository.findByUsername(user.getUsername())).thenReturn(null);
+        when(userRepository.findByUserName(user.getUsername())).thenReturn(null);
         when(userRepository.save(user)).thenReturn(user);
         userService.createUser(user);
         verify(passwordEncoder, times(1)).encode("Password");
@@ -36,7 +36,7 @@ public class UserServiceTests {
     @Test
     public void createUserExceptionTest() {
         User user = new User(1, "Username", "Password", "Full Name", "USER");
-        when(userRepository.findByUsername(user.getUsername())).thenReturn(user);
+        when(userRepository.findByUserName(user.getUsername())).thenReturn(user);
         try {
             userService.createUser(user);
             fail();

@@ -1,22 +1,35 @@
 package com.nnk.springboot.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
 @Table(name = "RuleName")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @DynamicUpdate
 public class RuleName {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column(name = "id")
     private Integer id;
 
-    @Column
+
+    @NotEmpty(message = "Name is mandatory")
+    @Size(max= 255, message= "Name cannot be longer than 255 characters")
+    @Column(name = "name", nullable = false, length= 255)
     private String name;
 
-    @Column
+    @NotEmpty(message = "Description is mandatory")
+    @Size(max= 255, message= "Description cannot be longer than 255 characters")
+    @Column(name = "description", nullable = false, length= 255)
     private String description;
 
     @Column
@@ -31,78 +44,4 @@ public class RuleName {
     @Column
     private String sqlPart;
 
-
-    // Getters & Setters
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getJson() {
-        return json;
-    }
-
-    public void setJson(String json) {
-        this.json = json;
-    }
-
-    public String getTemplate() {
-        return template;
-    }
-
-    public void setTemplate(String template) {
-        this.template = template;
-    }
-
-    public String getSqlStr() {
-        return sqlStr;
-    }
-
-    public void setSqlStr(String sqlStr) {
-        this.sqlStr = sqlStr;
-    }
-
-    public String getSqlPart() {
-        return sqlPart;
-    }
-
-    public void setSqlPart(String sqlPart) {
-        this.sqlPart = sqlPart;
-    }
-
-
-    // Constructors
-
-    public RuleName() {
-    }
-
-    public RuleName(Integer id, String name, String description, String json, String template, String sqlStr, String sqlPart) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.json = json;
-        this.template = template;
-        this.sqlStr = sqlStr;
-        this.sqlPart = sqlPart;
-    }
 }

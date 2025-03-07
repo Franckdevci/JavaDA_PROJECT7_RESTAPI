@@ -1,6 +1,7 @@
 package com.nnk.springboot.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -25,6 +26,7 @@ public class BidList {
     private String type;
 
     @Column
+    @Min(0)
     private Double bidQuantity;
 
     @Column

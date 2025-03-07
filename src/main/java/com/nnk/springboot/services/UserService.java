@@ -27,7 +27,7 @@ public class UserService {
      */
     @Transactional
     public void createUser(User user) throws UsernameAlreadyExistingException {
-        User existingUser = userRepository.findByUsername(user.getUsername());
+        User existingUser = userRepository.findByUserName(user.getUserName());
         if (!ObjectUtils.isEmpty(existingUser)) {
             throw new UsernameAlreadyExistingException("An account with this username already exists. Please use another username.");
         }

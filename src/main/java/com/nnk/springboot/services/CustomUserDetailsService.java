@@ -31,14 +31,14 @@ public class CustomUserDetailsService implements UserDetailsService {
     /**
      * loadUserByUsername method to fetch user details from the database based on the provided username
      *
-     * @param username provided by login form during authentication, for which user details are to be fetched
+     * @param userName provided by login form during authentication, for which user details are to be fetched
      * @return UserDetails object containing user's details
      * @throws UsernameNotFoundException thrown if the database doesn't find a user with given username
      */
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getGrantedAuthorities(user.getRole()));
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        User user = userRepository.findByUserName(userName);
+        return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(), getGrantedAuthorities(user.getRole()));
     }
 
     /**

@@ -1,10 +1,20 @@
 package com.nnk.springboot.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
 @Table(name = "Rating")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @DynamicUpdate
 public class Rating {
 
@@ -13,72 +23,26 @@ public class Rating {
     @Column
     private Integer id;
 
-    @Column
+
+    @NotEmpty(message = "Moody's rating is mandatory")
+    @Size(max= 255, message= "Moody's cannot be longer than 255 characters")
+    @Column(name = "moodysRating", nullable = false, length= 255)
     private String moodysRating;
 
-    @Column
+    @NotEmpty(message = "S&P Rating is mandatory")
+    @Size(max= 255, message= "S&P Rating cannot be longer than 255 characters")
+    @Column(name = "sandPRating", nullable = false, length= 255)
     private String sandPRating;
 
-    @Column
+    @NotEmpty(message = "Fitch Rating is mandatory")
+    @Size(max= 255, message= "Fitch rating cannot be longer than 255 characters")
+    @Column(name = "fitchRating", nullable = false, length= 255)
     private String fitchRating;
 
-    @Column
+    @NotNull(message = "Order number is mandatory")
+    @Column(name = "orderNumber")
+    @Min(value = 1, message = "Order number must be positive and higher than 0")
     private Integer orderNumber;
 
 
-    // Getters & Setters
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getMoodysRating() {
-        return moodysRating;
-    }
-
-    public void setMoodysRating(String moodysRating) {
-        this.moodysRating = moodysRating;
-    }
-
-    public String getSandPRating() {
-        return sandPRating;
-    }
-
-    public void setSandPRating(String sandPRating) {
-        this.sandPRating = sandPRating;
-    }
-
-    public String getFitchRating() {
-        return fitchRating;
-    }
-
-    public void setFitchRating(String fitchRating) {
-        this.fitchRating = fitchRating;
-    }
-
-    public Integer getOrderNumber() {
-        return orderNumber;
-    }
-
-    public void setOrderNumber(Integer orderNumber) {
-        this.orderNumber = orderNumber;
-    }
-
-
-    // Constructors
-
-    public Rating() {
-    }
-
-    public Rating(Integer id, String moodysRating, String sandPRating, String fitchRating, Integer orderNumber) {
-        this.id = id;
-        this.moodysRating = moodysRating;
-        this.sandPRating = sandPRating;
-        this.fitchRating = fitchRating;
-        this.orderNumber = orderNumber;
-    }
 }
