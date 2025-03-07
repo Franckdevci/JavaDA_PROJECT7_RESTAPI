@@ -24,7 +24,6 @@ public class UserService {
      *
      * @param user provided by create user form
      * @throws UsernameAlreadyExistingException if username given in user object is already taken
-     * @author Clara SLYS
      */
     @Transactional
     public void createUser(User user) throws UsernameAlreadyExistingException {

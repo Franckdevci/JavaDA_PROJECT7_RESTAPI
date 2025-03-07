@@ -108,7 +108,6 @@ public class Security {
      * userDetailsService method used by authenticationProvider method to retrieve user's username, password, full name and role during authentication
      *
      * @return a CustomUserDetailService instance containing user's information
-     * @author Clara SLYS
      */
     @Bean
     public UserDetailsService userDetailsService() {
@@ -119,7 +118,6 @@ public class Security {
      * passwordEncoder method to create a BCryptPasswordEncoder to encode user's password, so there is no sensitive data leak
      *
      * @return a PasswordEncoder instance
-     * @author Clara SLYS
      */
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -131,7 +129,6 @@ public class Security {
      * Redirection page depends on logged-in user's role
      *
      * @return a WebServerFactoryCustomizer instance
-     * @author Clara SLYS
      */
     @Bean
     public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> containerCustomizer() {
